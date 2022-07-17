@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"content="IE=edge">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    <title>Image-Carousel</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            height: 100vh;
+            background-image: linear-gradient(rgb(90, 90, 253),white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            width: 600px;
+            height: 350px;
+            border: 10px solid rgba(0, 0, 0, 0.365);
+            border-radius: 2%;
+            position: relative;
+        }
+        #btn1{
+            position: absolute;
+            top:45%;
+            left: 50px;
+        }
+        #btn2{
+            position: absolute;
+            top:45%;
+            right: 50px;
+        }
+        .btn{
+            font-size: xx-large;
+            width: 40px;
+            height: 40px;
+            border-color: aliceblue;
+            background-color: rgba(135, 123, 123, 0.8);
+            border-radius: 50%;
+            color: white;
+            z-index: 10;
+        }
+        .btn:active{
+            background-color: white;
+            color: black;
+        }
+        .carousel{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .image{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            visibility: hidden;
+        }
+        img{
+            width: 100%;
+            height: 90%;
+        }
+        .image p{
+            background-color: rgba(0, 0, 0, 0.365);
+            color: rgb(255, 255, 255);
+            font-size: x-large;
+            border-radius: 5%;
+        }
+        .main{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <button class="btn"id="btn1"><</button>
+            <button class="btn"id="btn2">></button>
+            <div class="carousel">
+                <div class="image main" id="i0"><img src="https://media.istockphoto.com/photos/colourful-wave-peaking-into-a-flare-with-sunrise-storm-picture-id1222094964?s=612x612"alt="image1"><p>Image 1</p></div>
+                <div class="image "id="i1"><img src="https://media.istockphoto.com/photos/dark-blue-ocean-surface-seen-from-underwater-picture-id1300845179?s=612x612"alt="image2"><p>Image 2</p></div>
+                <div class="image "id="i2"><img src="https://media.istockphoto.com/photos/sunbeams-over-cliffs-and-fjord-west-fjords-iceland-picture-id559537689?s=612x612"alt="image3"><p>Image 3</p></div>
+                <div class="image "id="i3"><img src="https://media.istockphoto.com/photos/idyllic-meadow-picture-id1294119130?s=612x612"alt="image4"><p>Image 4</p></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var btn1=document.getElementById("btn1");
+        var btn2=document.getElementById("btn2");
+        btn1.onclick=prev;
+        btn2.onclick=next;
+        var i=0;
+        function next(){
+            document.getElementById("i"+i).className="image ";
+            i=(i+1)%4;
+            document.getElementById("i"+i).className="image main";
+        }
+        function prev(){
+            document.getElementById("i"+i).className="image ";
+            i=i-1;
+            if(i==-1)i=3;
+            document.getElementById("i"+i).className="image main";
+        }
+        window.onload=change;
+        function change()
+        {   
+            setInterval(next,3000);
+        }
+    </script>
+</body>
+</html>
